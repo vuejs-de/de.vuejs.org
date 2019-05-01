@@ -1,12 +1,12 @@
 ---
-title: The Vue Instance
+title: Die Vue-Instanz
 type: guide
 order: 3
 ---
 
-## Creating a Vue Instance
+## Eine Vue-Instanz erzeugen
 
-Every Vue application starts by creating a new **Vue instance** with the `Vue` function:
+Am Anfang einer Vue-Anwendung steht das erzeugen einer neuen **Vue-Instanz** mithilfe der `Vue` Funktion:
 
 ```js
 var vm = new Vue({
@@ -14,15 +14,15 @@ var vm = new Vue({
 })
 ```
 
-Although not strictly associated with the [MVVM pattern](https://en.wikipedia.org/wiki/Model_View_ViewModel), Vue's design was partly inspired by it. As a convention, we often use the variable `vm` (short for ViewModel) to refer to our Vue instance.
+Da das Design von Vue teilweise durch das [MVVM Entwurfsmuster](https://de.wikipedia.org/wiki/Model_View_ViewModel) inspiriert ist verwenden wir häufig per Konvention den Bezeichner `vm` (kurz für ViewModel) für die Vue-Instanz.
 
-When you create a Vue instance, you pass in an **options object**. The majority of this guide describes how you can use these options to create your desired behavior. For reference, you can also browse the full list of options in the [API reference](../api/#Options-Data).
+Beim Erzeugen einer Vue-Instanz wird ein **Optionen-Objekt** übergeben. Der Großteil dieses Guides beschäftige sich damit wie diese Optionen verwendet werden können um das erwünschte Verhalten zu erzeugen. Für eine Liste aller Optionen siehe die [API Referenz](../api/#Options-Data)
 
-A Vue application consists of a **root Vue instance** created with `new Vue`, optionally organized into a tree of nested, reusable components. For example, a todo app's component tree might look like this:
+Eine Vue-Anwendung besteht aus einer **Wurzel-Vue-Instanz** welche mit `new Vue` erzeugen und optional als ein Baum von verschachtelten, wiederverwendbaren Komponenten organisiert ist. Der Komponenten-Baum einer Todo-Anwendung könnte beispielsweise so aussehen:
 
 ```
-Root Instance
-└─ TodoList
+Wurzel-Instanz
+└─ TodoListe
    ├─ TodoItem
    │  ├─ DeleteTodoButton
    │  └─ EditTodoButton
@@ -31,42 +31,41 @@ Root Instance
       └─ TodoListStatistics
 ```
 
-We'll talk about [the component system](components.html) in detail later. For now, just know that all Vue components are also Vue instances, and so accept the same options object (except for a few root-specific options).
+[Das Komponenten-System](components.html) werden wir später noch im Detail behandeln. Für jetzt reicht es zu wissen das alle Vue-Komponenten auch Vue-Instanzen sind und somit das gleiche Optionen-Objekt akzeptieren (Ein paar wurzel-spezifische Optionen ausgenommen).
 
-## Data and Methods
+## Daten und Methoden
 
-When a Vue instance is created, it adds all the properties found in its `data` object to Vue's **reactivity system**. When the values of those properties change, the view will "react", updating to match the new values.
+Wenn eine Vue-Instanz erzeugt wird, werden alle Eigenschaften des `data` Objekts zu Vue's **Reaktivitäts-System** hinzugefügt. Wenn sich die Werte dieser Eigenschaften ändern wird die View "reagieren" und sich mit den neuen Werten aktualisieren.  
 
 ```js
-// Our data object
+// Unser Daten-Objekt
 var data = { a: 1 }
 
-// The object is added to a Vue instance
+// Das Objekt wird einer Vue-Instanz hinzugefügt
 var vm = new Vue({
   data: data
 })
 
-// Getting the property on the instance
-// returns the one from the original data
+// Die Eigschaft der Instanz entspricht
+// der Eigschaft des ursprünglichen Objekts
 vm.a == data.a // => true
 
-// Setting the property on the instance
-// also affects the original data
+// Das Verändern der Eigeschaft über die Instanz 
+// verändert auch die Eigenschaft am Daten ursprünglichen Objekt
 vm.a = 2
 data.a // => 2
 
-// ... and vice-versa
+// ... und vice versa
 data.a = 3
 vm.a // => 3
 ```
 
-When this data changes, the view will re-render. It should be noted that properties in `data` are only **reactive** if they existed when the instance was created. That means if you add a new property, like:
+Wenn sich die Daten ändern, wird die View neu gerendert. Es sollte zur Kenntniss genommen werden das nur jede Eigschaften von `data` **reaktiv** sind welche beim Erzeugen der Instanz existierten. Das bedeutet, dass wenn Du eine neue Eigeschaft hinzufügst:
 
 ```js
 vm.b = 'hi'
 ```
-
-Then changes to `b` will not trigger any view updates. If you know you'll need a property later, but it starts out empty or non-existent, you'll need to set some initial value. For example:
+Die Änderung von `b` keine Aktualisierung der View auslösen. Wenn du weißt das Du eine Eigeschaft später benötigen wirst sie aber zu Beginn leer sein soll, dann musst Du ihr einen initialen Wert zuweisen. Zum Beispiel: 
 
 ```js
 data: {
@@ -78,7 +77,7 @@ data: {
 }
 ```
 
-The only exception to this being the use of `Object.freeze()`, which prevents existing properties from being changed, which also means the reactivity system can't _track_ changes.
+Die einzige Ausnahme ist wenn `Object.freeze()` verwendet wird was verhindert das existierende Eigenschaften verändert werden können, was auch bedeutet dass das Reaktivitäts-System Änderungen nicht mehr _nachverfolgen_ kann.
 
 ```js
 var obj = {
@@ -96,12 +95,12 @@ new Vue({
 ```html
 <div id="app">
   <p>{{ foo }}</p>
-  <!-- this will no longer update `foo`! -->
-  <button v-on:click="foo = 'baz'">Change it</button>
+  <!-- `foo` wird nicht mehr aktualisiert! -->
+  <button v-on:click="foo = 'baz'">foo verändern</button>
 </div>
 ```
 
-In addition to data properties, Vue instances expose a number of useful instance properties and methods. These are prefixed with `$` to differentiate them from user-defined properties. For example:
+Neben den Daten-Eigenschaften bietet Vue noch eine Menge weiterer, nützlicher Instanz-Methoden und -Eigenschaften. Diese sind mit dem `$` Prefix versehen um sie von benutzerdefinierten Eigenschaften zu unterscheiden. Zum Beispiel:
 
 ```js
 var data = { a: 1 }
@@ -113,19 +112,18 @@ var vm = new Vue({
 vm.$data === data // => true
 vm.$el === document.getElementById('example') // => true
 
-// $watch is an instance method
+// $watch ist eine Instanz-Methode
 vm.$watch('a', function (newValue, oldValue) {
-  // This callback will be called when `vm.a` changes
+  // Dieser Callback wird aufgerüfen wenn sich `vm.a` ändert
 })
 ```
+Für eine vollständige Liste der Instanz-Eigenschaften und -Methoden siehe die [API Referenz](../api/#Instance-Properties).
 
-In the future, you can consult the [API reference](../api/#Instance-Properties) for a full list of instance properties and methods.
+## Instanz-Lebenszyklus-Hooks
 
-## Instance Lifecycle Hooks
+Wenn eine Vue-Instanz erzeugt wurde durchläuft sie bei der Initialisierung eine Reihe von Schritten - zum Beispiel muss das Beobachten von Daten eingerichtet, das template kompiliert, die Instanz in das DOM eingehängt und das DOM bei Änderungen aktualisiert werden. Während all dies passiert werden Funktionen ausgeführt welche man **Lebenszyklus-Hooks** nennt und dem Benutzer die Gelegenheit geben, an bestimmten Abschnitten eigenen Code hinzuzufügen.
 
-Each Vue instance goes through a series of initialization steps when it's created - for example, it needs to set up data observation, compile the template, mount the instance to the DOM, and update the DOM when data changes. Along the way, it also runs functions called **lifecycle hooks**, giving users the opportunity to add their own code at specific stages.
-
-For example, the [`created`](../api/#created) hook can be used to run code after an instance is created:
+Der [`created`](../api/#created) Hook kann zum Beispiel verwendet werden um Code auszuführen nachdem eine Instanz erzeugt wurde:
 
 ```js
 new Vue({
@@ -133,19 +131,19 @@ new Vue({
     a: 1
   },
   created: function () {
-    // `this` points to the vm instance
-    console.log('a is: ' + this.a)
+    // `this` zeigt auf die vm Instanz
+    console.log('a ist: ' + this.a)
   }
 })
-// => "a is: 1"
+// => "a ist: 1"
 ```
 
-There are also other hooks which will be called at different stages of the instance's lifecycle, such as [`mounted`](../api/#mounted), [`updated`](../api/#updated), and [`destroyed`](../api/#destroyed). All lifecycle hooks are called with their `this` context pointing to the Vue instance invoking it.
+Es gibt noch weitere Hooks welche an verschiedenen Abschnitten im Lebenszyklus einer Instanz aufgerufen werden, wie [`mounted`](../api/#mounted), [`updated`](../api/#updated), und [`destroyed`](../api/#destroyed). Alle Lebenszyklus-Hooks werden so aufgerufen das ihr `this` Kontext auf die Vue-Instanz zeigt zu der sie gehören. 
 
-<p class="tip">Don't use [arrow functions](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions) on an options property or callback, such as `created: () => console.log(this.a)` or `vm.$watch('a', newValue => this.myMethod())`. Since an arrow function doesn't have a `this`, `this` will be treated as any other variable and lexically looked up through parent scopes until found, often resulting in errors such as `Uncaught TypeError: Cannot read property of undefined` or `Uncaught TypeError: this.myMethod is not a function`.</p>
+<p class="tip">Benutze keine [arrow functions](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions) auf einer Optionen-Eigenschaft oder als Callback, wie `created: () => console.log(this.a)` oder `vm.$watch('a', newValue => this.myMethod())`. Da es in arrow functions kein `this` gibt wird `this` als normaler Variablenbezeichner angesehen und lexikalisch in einschließenden Geltungsbereichen gesucht was häufig zu Fehlern wie `Uncaught TypeError: Cannot read property of undefined` oder `Uncaught TypeError: this.myMethod is not a function` führt.</p>
 
-## Lifecycle Diagram
+## Lebenszyklus-Diagramm
 
-Below is a diagram for the instance lifecycle. You don't need to fully understand everything going on right now, but as you learn and build more, it will be a useful reference.
+Nachfolgend ist ein Diagramm des Instanz-Lebenszyklus. Du musst an diesem Punkt nicht alles davon verstehen, aber wenn Du weiter fortgeschritten bist wird dieses Diagramm eine nützliche Referenz sein. 
 
 ![The Vue Instance Lifecycle](/images/lifecycle.png)
