@@ -6,47 +6,47 @@ vue_version: 2.5.16
 gz_size: "30.90"
 ---
 
-### Compatibility Note
+### Kompatibilitätshinweis
 
-Vue does **not** support IE8 and below, because it uses ECMAScript 5 features that are un-shimmable in IE8. However it supports all [ECMAScript 5 compliant browsers](https://caniuse.com/#feat=es5).
+Vue unterstützt IE8 und vorangehende Versionen **nicht** da es ECMAScript 5 Features benötigt welche in IE8 nicht nachempfunden werden können. Alle [ECMAScript 5 kompatiblen Browser](https://caniuse.com/#feat=es5) werden unterstützt.
 
-### Release Notes
+### Versionshinweis
 
-Latest stable version: {{vue_version}}
+Aktuelle stabile Version: {{vue_version}}
 
-Detailed release notes for each version are available on [GitHub](https://github.com/vuejs/vue/releases).
+Detailierte Versionshinweise für jede Version sind auf [GitHub](https://github.com/vuejs/vue/releases) verfügbar.
 
-## Vue Devtools
+## Vue Entwicklungswerkzeuge
 
-When using Vue, we recommend also installing the [Vue Devtools](https://github.com/vuejs/vue-devtools#vue-devtools) in your browser, allowing you to inspect and debug your Vue applications in a more user-friendly interface.
+Bei der Benutzung von Vue empfehlen wir zusätzlich die Installation der [Vue-Entwicklungswerkzeuge](https://github.com/vuejs/vue-devtools#vue-devtools) welche das Debuggen und inspizieren von Vue-Anwendungen im Browser ermöglichen.
 
-## Direct `<script>` Include
+## Direkt über `<script>` einbinden 
 
-Simply download and include with a script tag. `Vue` will be registered as a global variable.
+Einfach herunterladen und als Script-Tag einbinden. `Vue` wird dann als globale Variable registriert.
 
-<p class="tip">Don't use the minified version during development. You will miss out on all the nice warnings for common mistakes!</p>
+<p class="tip">Benutze die minifizierte Version nicht während der Entwicklung, Du verpasst sonst die ganzen Warnungen!</p>
 
 <div id="downloads">
-  <a class="button" href="/js/vue.js" download>Development Version</a><span class="light info">With full warnings and debug mode</span>
+  <a class="button" href="/js/vue.js" download>Entwicklungsversion</a><span class="light info">Mit allen Warnungen und Debug-Modus</span>
 
-  <a class="button" href="/js/vue.min.js" download>Production Version</a><span class="light info">Warnings stripped, {{gz_size}}KB min+gzip</span>
+  <a class="button" href="/js/vue.min.js" download>Produktiv-Version</a><span class="light info">Warnungen entfernt, {{gz_size}}KB min+gzip</span>
 </div>
 
 ### CDN
 
-For prototyping or learning purposes, you can use the latest version with:
+Für Prototypen oder für Lernzwecke kann die neueste Version auch folgendermaßen benutzt werden:
 
 ``` html
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 ```
 
-For production, we recommend linking to a specific version number and build to avoid unexpected breakage from newer versions:
+Für den Produktiveinsatz empfehlen wir einen Build mit fixer Versionsnummer zu verwenden um etwaige Fehler durch neuere Versionen vorzubeugen.
 
 ``` html
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0/dist/vue.js"></script>
 ```
 
-If you are using native ES Modules, there is also an ES Modules compatible build:
+Falls Du native ES-Module verwendest, gibt es auch dafür einen kompatiblen Build:
 
 ``` html
 <script type="module">
@@ -54,7 +54,7 @@ If you are using native ES Modules, there is also an ES Modules compatible build
 </script>
 ```
 
-You can browse the source of the NPM package at [cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue/).
+Den Quellcode für das NPM-Paket findest Du hier: [cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue/).
 
 Vue is also available on [unpkg](https://unpkg.com/vue@{{vue_version}}/dist/vue.js) and [cdnjs](https://cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js) (cdnjs takes some time to sync so the latest release may not be available yet).
 
