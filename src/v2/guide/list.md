@@ -1,17 +1,17 @@
 ---
-title: List Rendering
+title: Listen Rendering
 type: guide
 order: 8
 ---
 
-## Mapping an Array to Elements with `v-for`
+## Ein Array mit `v-for` auf Elemente abbilden 
 
-We can use the `v-for` directive to render a list of items based on an array. The `v-for` directive requires a special syntax in the form of `item in items`, where `items` is the source data array and `item` is an **alias** for the array element being iterated on:
+Wir können die `v-for` Direktive benutzen um eine Liste aus Items aus einem Array zu rendern. Die `v-for` Direktive hat eine spezielle Syntax in der Form `item in items` wo `items` das Array mit den Quell-Daten und `item` ein **Alias** für das aktuelle Array-Element ist:
 
 ``` html
 <ul id="example-1">
   <li v-for="item in items">
-    {{ item.message }}
+    {{ item.nachricht }}
   </li>
 </ul>
 ```
@@ -21,8 +21,8 @@ var example1 = new Vue({
   el: '#example-1',
   data: {
     items: [
-      { message: 'Foo' },
-      { message: 'Bar' }
+      { nachricht: 'Foo' },
+      { nachricht: 'Bar' }
     ]
   }
 })
@@ -33,7 +33,7 @@ Result:
 {% raw %}
 <ul id="example-1" class="demo">
   <li v-for="item in items">
-    {{item.message}}
+    {{item.nachricht}}
   </li>
 </ul>
 <script>
@@ -41,8 +41,8 @@ var example1 = new Vue({
   el: '#example-1',
   data: {
     items: [
-      { message: 'Foo' },
-      { message: 'Bar' }
+      { nachricht: 'Foo' },
+      { nachricht: 'Bar' }
     ]
   }
 })
@@ -50,6 +50,7 @@ var example1 = new Vue({
 {% endraw %}
 
 Inside `v-for` blocks we have full access to parent scope properties. `v-for` also supports an optional second argument for the index of the current item.
+Innerhalb eines `v-for` Blocks haben wir vollen Zugriff auf die Eigenschaften es darüberliegenden Geltungsbereichs. Weiterhin unterstützt `v-for` ein optionales zweites Argument mit dem Index des aktuellen Items.: 
 
 ``` html
 <ul id="example-2">
