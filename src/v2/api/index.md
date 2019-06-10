@@ -5,7 +5,7 @@ type: api
 
 ## Global Config
 
-`Vue.config` is an object containing Vue's global configurations. You can modify its properties listed below before bootstrapping your application:
+`Vue.config` ist ein Objekt welches Vue's globale Konfiguration enthält. Die unten aufgelisteten Eigeschaften des Objekts können vor dem Start der Anwendung modifiziert werden:
 
 ### silent
 
@@ -19,7 +19,7 @@ type: api
   Vue.config.silent = true
   ```
 
-  Suppress all Vue logs and warnings.
+  Unterdrücke alle Logs und Warnungn von Vue.
 
 ### optionMergeStrategies
 
@@ -44,6 +44,8 @@ type: api
   Define custom merging strategies for options.
 
   The merge strategy receives the value of that option defined on the parent and child instances as the first and second arguments, respectively. The context Vue instance is passed as the third argument.
+
+  Definiere 
 
 - **See also:** [Custom Option Merging Strategies](../guide/mixins.html#Custom-Option-Merge-Strategies)
 
