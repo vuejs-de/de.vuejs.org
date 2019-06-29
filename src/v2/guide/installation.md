@@ -56,13 +56,13 @@ Falls Du native ES-Module verwendest, gibt es auch dafür einen kompatiblen Buil
 
 Den Quellcode für das NPM-Paket findest Du hier: [cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue/).
 
-Vue is also available on [unpkg](https://unpkg.com/vue@{{vue_version}}/dist/vue.js) and [cdnjs](https://cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js) (cdnjs takes some time to sync so the latest release may not be available yet).
+Vue ist ebenfalls auf [unpkg](https://unpkg.com/vue@{{vue_version}}/dist/vue.js) und [cdnjs](https://cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js) verfügbar (da cdnjs für die Synchronization eine Weile braucht kann es vorkommen dass das neueste Release noch nicht verfügbar ist).
 
-Make sure to read about [the different builds of Vue](#Explanation-of-Different-Builds) and use the **production
- version** in your published site, replacing `vue.js` with `vue.min.js`. This is a smaller build optimized for speed instead of development experience.
+Lies auch den Abschnitt über [die verschiedene Builds von Vue](#Erklarung-der-verschiedenen-Builds) und benutze die **produktiv Version** auf Deiner fertigen Seite, dadurch wird `vue.js` mit `vue.min.js` ersetzt. Dabei handelt es sich um eine für Geschwindigkeit optimierte Version die sich eher weniger für die Entwicklung eignet.
 
 ## NPM
 
+NPM ist die empfohlene Installations-Methode für große Vue-Anwendungen.   
 NPM is the recommended installation method when building large scale applications with Vue. It pairs nicely with module bundlers such as [Webpack](https://webpack.js.org/) or [Browserify](http://browserify.org/). Vue also provides accompanying tools for authoring [Single File Components](single-file-components.html).
 
 ``` bash
@@ -78,7 +78,7 @@ Vue provides an [official CLI](https://github.com/vuejs/vue-cli) for quickly sca
 
 <div class="vue-mastery"><a href="https://www.vuemastery.com/courses/real-world-vue-js/vue-cli" target="_blank" rel="noopener" title="Vue CLI">Watch a video explanation on Vue Mastery</a></div>
 
-## Explanation of Different Builds
+## Erklärung der verschiedenen Builds
 
 In the [`dist/` directory of the NPM package](https://cdn.jsdelivr.net/npm/vue/dist/) you will find many different builds of Vue.js. Here's an overview of the difference between them:
 
